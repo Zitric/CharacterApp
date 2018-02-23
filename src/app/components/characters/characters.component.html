@@ -1,7 +1,7 @@
 
 <div class="row animated fadeIn fast">
   <div class="col-md-9">
-    <h1>Star Wars characters</h1>
+    <h1>Characters</h1>
   </div>
   <div class="col-md-3 text-right align-self-center">
     <button class="btn btn-outline-primary"
@@ -21,30 +21,34 @@
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Last name</th>
-          <th scope="col">Options</th>
+          <th scope="col">Bio</th>
+          <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
+        <tr *ngFor="let k of characters | keys; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ characters[k].name }}</td>
+          <td>{{ characters[k].lastName }}</td>
+          <td>{{ characters[k].bio }}</td>
+          <td class="text-right w170">
+            <button class="btn btn-outline-success"
+                    [routerLink]="['/character', k]" >Edit</button>
+            <button class="btn btn-outline-danger"
+                    (click)="deleteCharacter(k)" >Delete</button>
+          </td>
         </tr>
         </tbody>
       </table>
+
+      <div *ngIf="( characters | keys ).length === 0 && !loading"
+        class="alert alert-info" role="alert">
+        <strong>There are not</strong> registers to display
+      </div>
+      <div *ngIf="loading"
+        class="alert alert-warning" role="alert">
+        <strong>Loading...</strong> registers to display
+      </div>
     </div>
   </div>
 </div>

@@ -1,6 +1,8 @@
+// Imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 // Component
 import { AppComponent } from './app.component';
@@ -12,6 +14,7 @@ import { APP_ROUTING } from './app.routes';
 
 // Servicies
 import { CharacterService } from './servicies/character.service';
+import { KeysPipe } from './pipes/keys.pipe';
 
 
 
@@ -19,11 +22,13 @@ import { CharacterService } from './servicies/character.service';
   declarations: [
     AppComponent,
     CharacterComponent,
-    CharactersComponent
+    CharactersComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     APP_ROUTING
   ],
   providers: [
